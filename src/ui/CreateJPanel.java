@@ -4,6 +4,8 @@
  */
 package ui;
 
+import model.Employee;
+
 /**
  *
  * @author Dsouza
@@ -13,8 +15,11 @@ public class CreateJPanel extends javax.swing.JPanel {
     /**
      * Creates new form CreateJPanel
      */
-    public CreateJPanel() {
+    
+    Employee employee;
+    public CreateJPanel(Employee employee) {
         initComponents();
+        this.employee = employee;
     }
 
     /**

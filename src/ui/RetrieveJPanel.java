@@ -4,6 +4,8 @@
  */
 package ui;
 
+import model.Employee;
+
 /**
  *
  * @author Dsouza
@@ -13,8 +15,10 @@ public class RetrieveJPanel extends javax.swing.JPanel {
     /**
      * Creates new form RetrieveJPanel
      */
-    public RetrieveJPanel() {
+    Employee employee;
+    public RetrieveJPanel(Employee employee) {
         initComponents();
+        this.employee = employee;
     }
 
     /**
@@ -76,7 +80,7 @@ public class RetrieveJPanel extends javax.swing.JPanel {
                             .addComponent(txtEmployeeID)
                             .addComponent(txtAge)
                             .addComponent(txtGender, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(438, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,7 +107,7 @@ public class RetrieveJPanel extends javax.swing.JPanel {
                         .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(15, 15, 15)
                         .addComponent(txtGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addContainerGap(176, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
