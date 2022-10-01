@@ -19,6 +19,8 @@ public class RetrieveJPanel extends javax.swing.JPanel {
     public RetrieveJPanel(Employee employee) {
         initComponents();
         this.employee = employee;
+        
+        displayEmployee();
     }
 
     /**
@@ -127,4 +129,11 @@ public class RetrieveJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtGender;
     private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
+
+    private void displayEmployee() {
+        txtName.setText(employee.getName());
+      //  txtEmployeeID.setText(employee.getEmployeeID());
+      txtGender.setText(employee.getGender());
+     // txtAge.setText(employee.getAge());
+    }
 }
