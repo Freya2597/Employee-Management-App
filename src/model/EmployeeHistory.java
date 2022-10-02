@@ -49,4 +49,17 @@ public class EmployeeHistory {
        return newEmployee;
         
     }
+
+    public ArrayList<Employee> searchFor(String s) {
+        ArrayList<Employee> newlist = new ArrayList<Employee>();
+        for(Employee e : history)
+        {
+            if(e.toString().contains(s))
+            {
+                newlist.add(e);
+            }
+        }
+       
+        return newlist;
+    }
 }
