@@ -23,6 +23,16 @@ public class Employee {
      private Image Photo;
     private String PhotoPath;
 
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
+    }
+    
+    private Contact contact;
+
     public String getPhotoPath() {
         return PhotoPath;
     }
