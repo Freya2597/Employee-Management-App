@@ -74,6 +74,11 @@ public class Employee {
         this.Positiontitle = Positiontitle;
     }
     
+    @Override
+    public String toString()
+    {
+        return Name;
+    }
     
             
 }

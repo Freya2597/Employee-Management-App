@@ -4,6 +4,7 @@
  */
 package ui;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Employee;
 import model.EmployeeHistory;
@@ -17,8 +18,9 @@ public class RetrieveJPanel extends javax.swing.JPanel {
     /**
      * Creates new form RetrieveJPanel
      */
-   // Employee employee;
+   Employee employee;
     EmployeeHistory history;
+    
     public RetrieveJPanel(EmployeeHistory history) {
         initComponents();
       //  this.employee = employee;
@@ -55,6 +57,7 @@ public class RetrieveJPanel extends javax.swing.JPanel {
         tblEmployees = new javax.swing.JTable();
         lblView = new javax.swing.JButton();
         lblDelete = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
 
         lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -127,6 +130,13 @@ public class RetrieveJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -154,7 +164,7 @@ public class RetrieveJPanel extends javax.swing.JPanel {
                         .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(210, 210, 210)))
                 .addComponent(txtStartdate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(447, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,14 +185,17 @@ public class RetrieveJPanel extends javax.swing.JPanel {
                                 .addComponent(txtEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtPositiontitle, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 741, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(495, 495, 495)
-                        .addComponent(lblView)
-                        .addGap(55, 55, 55)
-                        .addComponent(lblDelete)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(495, 495, 495)
+                            .addComponent(lblView)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnUpdate)
+                            .addGap(18, 18, 18)
+                            .addComponent(lblDelete))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 741, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(333, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -195,7 +208,8 @@ public class RetrieveJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblView)
-                    .addComponent(lblDelete))
+                    .addComponent(lblDelete)
+                    .addComponent(btnUpdate))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -204,8 +218,7 @@ public class RetrieveJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(txtEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)))
+                        .addComponent(txtEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblEmployeeID)
@@ -249,14 +262,61 @@ public class RetrieveJPanel extends javax.swing.JPanel {
 
     private void lblViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblViewActionPerformed
         // TODO add your handling code here:
+        int selecredrowIndex =  tblEmployees.getSelectedRow();
+        if(selecredrowIndex < 0)
+      {
+          JOptionPane.showMessageDialog(this,"Please select a row to delete"); 
+          
+      }else{
+          DefaultTableModel model = (DefaultTableModel)tblEmployees.getModel(); 
+          //model.removeRow(selecredrowIndex);
+           Employee selectedEmp = (Employee)model.getValueAt(selecredrowIndex, 0);
+        
+           txtName.setText(selectedEmp.getName());
+           txtEmployeeID.setText(String.valueOf(selectedEmp.getEmployeeID()));
+            txtAge.setText(String.valueOf(selectedEmp.getAge()));
+           txtGender.setText(selectedEmp.getGender());
+           txtStartdate.setText(selectedEmp.getStartdate());
+            
+           txtPositiontitle.setText(selectedEmp.getPositiontitle());
+           //   txt.setText(selectedEmp.getName());
+               
+                txtName.setText(selectedEmp.getName());
+                 txtName.setText(selectedEmp.getName());
+        }
+           
+        
     }//GEN-LAST:event_lblViewActionPerformed
 
     private void lblDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblDeleteActionPerformed
         // TODO add your handling code here:
+        
+      int selecredrowIndex =  tblEmployees.getSelectedRow();
+      if(selecredrowIndex < 0)
+      {
+          JOptionPane.showMessageDialog(this,"Please select a row to delete"); 
+          return;
+      }else{
+          DefaultTableModel model = (DefaultTableModel)tblEmployees.getModel(); 
+          //model.removeRow(selecredrowIndex);
+           Employee selectedEmp = (Employee)model.getValueAt(selecredrowIndex, 0);
+        
+       history.deleteEmployee(selectedEmp);
+        JOptionPane.showMessageDialog(this,"Employee deleted");   
+   
+        populateTable();
+          
+      }
+        
     }//GEN-LAST:event_lblDeleteActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAge;
     private javax.swing.JButton lblDelete;
@@ -280,21 +340,23 @@ public class RetrieveJPanel extends javax.swing.JPanel {
 
     private void populateTable() {
       
-        DefaultTableModel model = (DefaultTableModel)tblEmployees.getModel(); 
+        DefaultTableModel model = (DefaultTableModel) tblEmployees.getModel(); 
         model.setRowCount(0);  // delete empty record
         
         for (Employee emp : history.getHistory())
         {
             Object[] row = new Object[8];
-            row[0] = emp.getName();
+           // row[0] = emp.getName();
+           row[0] = emp;
             row[1] = emp.getEmployeeID();
             row[2] = emp.getAge();
             row[3] = emp.getGender();
             row[4] = emp.getStartdate();
             row[5] = emp.getLevel();
-            
+           // row[6] = emp.getTeamInfo();
             row[7] = emp.getPositiontitle();
-           // row[8] = emp.get
+           // row[8] = emp.getContactInfo();
+           //row[9] = emp.getPhoto();
             
            model.addRow(row);
         }
