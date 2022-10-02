@@ -39,4 +39,14 @@ public class EmployeeHistory {
        history.remove(emp);
     }
     
+    public Employee updateEmployee(int selectedrow, Employee newEmployee)
+    {
+ //Employee newEmployee = new Employee();
+        
+        //history.add(newEmployee);
+       history.set(selectedrow,newEmployee);
+       
+       return newEmployee;
+        
+    }
 }
