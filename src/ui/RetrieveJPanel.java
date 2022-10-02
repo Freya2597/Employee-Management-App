@@ -439,16 +439,7 @@ public class RetrieveJPanel extends javax.swing.JPanel {
        //DefaultTableModel newmodel = new DefaultTableModel();
       for(Employee ee : list)
       {
-        //  for(int i=0;i< list.size(); i++){
-         //  newmodel.setValueAt( ee.getName(),i ,0);
-          // newmodel.setValueAt( ee.getGender(),i ,3);
-          // newmodel.setValueAt( ee.getStartdate(),i ,4);
-           
-//           model.insertRow(0,new Object[] {ee.getName()});
-//             model.insertRow(1,new Object[] {ee.getEmployeeID()});
-//               model.insertRow(2,new Object[] {ee.});
-//           model.insertRow(3,new Object[] {ee.getGender()});
-//           model.insertRow(4,new Object[] {ee.getStartdate()});
+     
            
         model.addRow(new Object[] {ee.getName(),ee.getEmployeeID(),ee.getAge(),ee.getGender(),ee.getLevel(),ee.getStartdate(),
            // ee.getTeamInfo(),ee.getPositionTitle(),ee.getContact(),ee.getEmailAddress(), ee.getFileName()
