@@ -6,6 +6,7 @@ package ui;
 
 import javax.swing.JOptionPane;
 import model.Employee;
+import model.EmployeeHistory;
 
 /**
  *
@@ -16,11 +17,12 @@ public class CreateJPanel extends javax.swing.JPanel {
     /**
      * Creates new form CreateJPanel
      */
-    
+    EmployeeHistory history;
     Employee employee;
-    public CreateJPanel(Employee employee) {
+    public CreateJPanel(EmployeeHistory history) {
         initComponents();
         this.employee = employee;
+        this.history = history;
     }
 
     /**
@@ -42,6 +44,12 @@ public class CreateJPanel extends javax.swing.JPanel {
         txtAge = new javax.swing.JTextField();
         txtGender = new javax.swing.JTextField();
         btnSave = new javax.swing.JButton();
+        lblLevel = new javax.swing.JLabel();
+        lblPositiontitle = new javax.swing.JLabel();
+        lblStartdate = new javax.swing.JLabel();
+        txtPositiontitle = new javax.swing.JTextField();
+        txtStartdate = new javax.swing.JTextField();
+        txtLevel = new javax.swing.JTextField();
 
         lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -68,6 +76,24 @@ public class CreateJPanel extends javax.swing.JPanel {
             }
         });
 
+        lblLevel.setText("Level");
+
+        lblPositiontitle.setText("Position Title");
+
+        lblStartdate.setText("Start Date");
+
+        txtStartdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtStartdateActionPerformed(evt);
+            }
+        });
+
+        txtLevel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtLevelActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -78,20 +104,26 @@ public class CreateJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblEmployeeID)
                             .addComponent(lblAge, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblGender))
+                            .addComponent(lblGender)
+                            .addComponent(lblStartdate)
+                            .addComponent(lblPositiontitle))
                         .addGap(69, 69, 69)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtPositiontitle, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                             .addComponent(txtName, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                             .addComponent(txtEmployeeID)
                             .addComponent(txtAge)
-                            .addComponent(txtGender))
-                        .addGap(0, 101, Short.MAX_VALUE)))
+                            .addComponent(txtGender)
+                            .addComponent(txtLevel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                            .addComponent(txtStartdate))
+                        .addGap(0, 385, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(132, 132, 132)
+                .addGap(127, 127, 127)
                 .addComponent(btnSave)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -118,9 +150,21 @@ public class CreateJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblGender)
                     .addComponent(txtGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtLevel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblPositiontitle)
+                    .addComponent(txtPositiontitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblStartdate, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtStartdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
                 .addComponent(btnSave)
-                .addGap(18, 18, 18))
+                .addContainerGap(176, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -130,14 +174,53 @@ public class CreateJPanel extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        employee.setName(txtName.getText());
-       // employee.setEmployeeID(txtEmployeeID.get);
-        //employee.setAge(txtAge.getText());
-        employee.setGender(txtGender.getText());
+       // employee.setName(txtName.getText());
+       
+       String name = txtName.getText();
+        int EmpId = Integer.parseInt(txtEmployeeID.getText());
+        int age = Integer.parseInt(txtAge.getText());
+      String gender = txtGender.getText();
+      String level = txtLevel.getText();
+              String startdate = txtStartdate.getText();
+              String position = txtPositiontitle.getText();
+        //employee.setGender(txtGender.getText());
+         
+         Employee emp = history.addNewEmployee(); //call addnewemp method
+         
+         emp.setName(name);
+        emp.setEmployeeID(EmpId);
+        emp.setAge(age);
+         //emp.setGender(txtGender.getText());
+         emp.setGender(gender);
+         emp.setLevel(level);
+         //emp.setLevel(txtLevel.getText());
+         emp.setStartdate(startdate);
+        // emp.setPositiontitle(txtPositiontitle.getText());
+        emp.setPositiontitle(position);
+         //emp.setStartdate(txtStartdate.getText());
+         
          
          
         JOptionPane.showMessageDialog(this, "Employee Information Saved.");
+        
+       txtName.setText("");
+        txtEmployeeID.setText("");
+        txtAge.setText("");
+        txtGender.setText("");
+        txtLevel.setText("");
+        txtPositiontitle.setText("");
+          txtStartdate.setText("");
+        
+        
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void txtLevelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLevelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtLevelActionPerformed
+
+    private void txtStartdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStartdateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtStartdateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -145,11 +228,17 @@ public class CreateJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblAge;
     private javax.swing.JLabel lblEmployeeID;
     private javax.swing.JLabel lblGender;
+    private javax.swing.JLabel lblLevel;
     private javax.swing.JLabel lblName;
+    private javax.swing.JLabel lblPositiontitle;
+    private javax.swing.JLabel lblStartdate;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JTextField txtAge;
     private javax.swing.JTextField txtEmployeeID;
     private javax.swing.JTextField txtGender;
+    private javax.swing.JTextField txtLevel;
     private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtPositiontitle;
+    private javax.swing.JTextField txtStartdate;
     // End of variables declaration//GEN-END:variables
 }

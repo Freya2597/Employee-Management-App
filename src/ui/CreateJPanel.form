@@ -22,25 +22,31 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblLevel" min="-2" pref="52" max="-2" attributes="0"/>
                           <Component id="lblName" alignment="0" min="-2" pref="85" max="-2" attributes="0"/>
                           <Component id="lblEmployeeID" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblAge" alignment="0" min="-2" pref="85" max="-2" attributes="0"/>
                           <Component id="lblGender" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblStartdate" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblPositiontitle" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="txtPositiontitle" pref="100" max="32767" attributes="0"/>
                           <Component id="txtName" pref="100" max="32767" attributes="0"/>
                           <Component id="txtEmployeeID" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtAge" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtGender" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtLevel" alignment="1" pref="100" max="32767" attributes="0"/>
+                          <Component id="txtStartdate" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="101" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="385" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="127" max="-2" attributes="0"/>
               <Component id="btnSave" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -75,9 +81,24 @@
                   <Component id="lblGender" min="-2" max="-2" attributes="0"/>
                   <Component id="txtGender" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="60" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lblLevel" min="-2" pref="22" max="-2" attributes="0"/>
+                  <Component id="txtLevel" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lblPositiontitle" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtPositiontitle" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lblStartdate" min="-2" pref="26" max="-2" attributes="0"/>
+                  <Component id="txtStartdate" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Component id="btnSave" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <EmptySpace pref="176" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -129,6 +150,33 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblLevel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Level"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblPositiontitle">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Position Title"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblStartdate">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Start Date"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtPositiontitle">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtStartdate">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtStartdateActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtLevel">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtLevelActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
