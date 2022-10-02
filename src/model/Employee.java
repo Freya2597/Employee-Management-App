@@ -4,6 +4,9 @@
  */
 package model;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Dsouza
@@ -17,7 +20,24 @@ public class Employee {
     private String Level;
     
     private String Positiontitle;
+     private Image Photo;
+    private String PhotoPath;
 
+    public String getPhotoPath() {
+        return PhotoPath;
+    }
+
+    public void setPhotoPath(String PhotoPath) {
+        this.PhotoPath = PhotoPath;
+    }
+    public Image getPhoto() {
+        return Photo;
+    }
+
+    public void setPhoto(Image Photo) {
+        this.Photo = Photo;
+    }
+ 
     public String getName() {
         return Name;
     }
@@ -73,7 +93,7 @@ public class Employee {
     public void setPositiontitle(String Positiontitle) {
         this.Positiontitle = Positiontitle;
     }
-    
+      
     @Override
     public String toString()
     {
