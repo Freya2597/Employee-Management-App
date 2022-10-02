@@ -8,6 +8,7 @@ import java.awt.Image;
 import java.io.File;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Employee;
@@ -24,7 +25,8 @@ public class RetrieveJPanel extends javax.swing.JPanel {
      */
    Employee employee;
     EmployeeHistory history;
-    
+     byte[] photo = null;
+    String filename = null;
     public RetrieveJPanel(EmployeeHistory history) {
         initComponents();
       //  this.employee = employee;
@@ -388,7 +390,20 @@ public class RetrieveJPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(this,"Employee deleted");   
    
         populateTable();
-          
+        
+          txtName.setText("");
+        txtEmployeeID.setText("");
+        txtAge.setText("");
+        txtGender.setText("");
+        txtLevel.setText("");
+        txtPositiontitle.setText("");
+          txtStartdate.setText("");
+          lblPhotoPath.setText("");
+          //lblPhoto.setText("");
+         // ImageIcon in = new ImageIcon(selectedEmp.getPhotoPath());
+                 
+             //    Image image = in.getImage().getScaledInstance(lblPhoto.getWidth(), lblPhoto.getHeight(), Image.SCALE_SMOOTH);
+                 lblPhoto.setIcon(new ImageIcon());
       }
         
     }//GEN-LAST:event_lblDeleteActionPerformed
@@ -414,6 +429,7 @@ public class RetrieveJPanel extends javax.swing.JPanel {
       String level = txtLevel.getText();
               String startdate = txtStartdate.getText();
               String position = txtPositiontitle.getText();
+              String path = lblPhotoPath.getText();
         //employee.setGender(txtGender.getText());
       
        
@@ -424,7 +440,7 @@ public class RetrieveJPanel extends javax.swing.JPanel {
          emp.setLevel(level);
          emp.setStartdate(startdate);
         emp.setPositiontitle(position);
-         
+         emp.setPhotoPath(path);
          // Employee updatedEmp = (Employee)model.setValueAt(age, age, age)
          
        model.setValueAt( name, selectedrowIndex,0);
@@ -455,7 +471,8 @@ public class RetrieveJPanel extends javax.swing.JPanel {
         txtLevel.setText("");
         txtPositiontitle.setText("");
           txtStartdate.setText("");
-        
+          lblPhotoPath.setText("");
+         lblPhoto.setIcon(new ImageIcon());
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -530,7 +547,20 @@ public class RetrieveJPanel extends javax.swing.JPanel {
 
     private void btnUploadPhotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUploadPhotoActionPerformed
         // TODO add your handling code here:
+         JFileChooser fileChooser = new JFileChooser();
         
+        fileChooser.showOpenDialog(null);
+        File f = fileChooser.getSelectedFile();
+        lblPhoto.setIcon(new ImageIcon(f.toString()));
+        
+        filename = f.getAbsolutePath();
+        
+        lblPhotoPath.setText(filename);
+        
+        ImageIcon in = new ImageIcon(filename);
+                 
+                 Image image = in.getImage().getScaledInstance(lblPhoto.getWidth(), lblPhoto.getHeight(), Image.SCALE_SMOOTH);
+                 lblPhoto.setIcon(new ImageIcon(image));
       
     }//GEN-LAST:event_btnUploadPhotoActionPerformed
 
