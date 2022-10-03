@@ -18,7 +18,15 @@ public class Employee {
     private String Gender;
     private String Startdate;
     private String Level;
-    
+    private String Team;
+   
+    public String getTeam() {
+        return Team;
+    }
+
+    public void setTeam(String Team) {
+        this.Team = Team;
+    }
     private String Positiontitle;
      private Image Photo;
     private String PhotoPath;
