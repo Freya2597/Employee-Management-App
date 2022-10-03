@@ -113,9 +113,17 @@ public class Employee {
     }
       
     @Override
+    
+    
     public String toString()
     {
-        return Name;
+        StringBuilder sb = new StringBuilder();
+        Contact coo = new Contact();
+        
+        sb.append(Name).append(" ").append(EmployeeID).append(" ").append(Age).append(" ").append(Gender).append(" ");
+        
+        return sb.toString();
+        //return Name;
     }
     
             

@@ -54,6 +54,7 @@ public class EmployeeHistory {
         ArrayList<Employee> newlist = new ArrayList<Employee>();
         for(Employee e : history)
         {
+            
             if(e.toString().contains(s))
             {
                 newlist.add(e);
